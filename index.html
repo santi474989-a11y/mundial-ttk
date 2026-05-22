@@ -1,0 +1,2338 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<title>Mis Premios del Mundial</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Nunito:wght@400;600;700;800;900&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --pink: #1B75BB;
+    --pink-light: #4DA3E0;
+    --pink-pale: #E0F0FF;
+    --pink-soft: #F0F8FF;
+    --green: #5BAD5E;
+    --green-light: #E8F5E9;
+    --gold: #F5C623;
+    --text: #2C2C4A;
+    --text-muted: #8A8AAA;
+    --bg: #F0F6FF;
+    --card: #FFFFFF;
+    --purple: #75CAFF;
+    --shadow: 0 8px 32px rgba(27,117,187,0.10);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Nunito', sans-serif;
+    background: var(--bg);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 24px 16px 48px;
+  }
+
+  .phone-wrap {
+    width: 100%;
+    max-width: 420px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    animation: fadeUp 0.5s ease both;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(28px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── BALANCE CARD ── */
+  .balance-card {
+    background: linear-gradient(135deg, #1B75BB 0%, #4DA3E0 50%, #0D5A9E 100%);
+    border-radius: 24px;
+    padding: 28px 28px 32px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 12px 40px rgba(27,117,187,0.38);
+    animation: fadeUp 0.5s 0.05s ease both;
+  }
+
+  .balance-card::before {
+    content: '';
+    position: absolute;
+    top: -40px; right: -40px;
+    width: 180px; height: 180px;
+    background: rgba(255,255,255,0.12);
+    border-radius: 50%;
+  }
+  .balance-card::after {
+    content: '';
+    position: absolute;
+    bottom: -60px; left: 40px;
+    width: 220px; height: 220px;
+    background: rgba(255,255,255,0.08);
+    border-radius: 50%;
+  }
+
+  .balance-label {
+    font-size: 14px;
+    color: rgba(255,255,255,0.82);
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    margin-bottom: 6px;
+  }
+
+  .balance-amount {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .balance-number {
+    font-family: 'Inter', sans-serif;
+    font-size: 48px;
+    font-weight: 800;
+    color: #fff;
+    line-height: 1;
+    letter-spacing: -2px;
+  }
+
+  .balance-unit {
+    font-family: 'Inter', sans-serif;
+    font-size: 22px;
+    font-weight: 600;
+    color: rgba(255,255,255,0.90);
+    letter-spacing: -0.5px;
+  }
+
+  .balance-sub {
+    font-size: 14px;
+    color: rgba(255,255,255,0.75);
+    margin-top: 4px;
+    font-weight: 600;
+  }
+
+  /* ── CONGRATS CARD ── */
+  .congrats-card {
+    background: var(--card);
+    border-radius: 22px;
+    padding: 22px 22px 22px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: var(--shadow);
+    animation: fadeUp 0.5s 0.10s ease both;
+  }
+
+  .congrats-text h2 {
+    font-size: 22px;
+    font-weight: 900;
+    color: var(--text);
+    margin-bottom: 4px;
+  }
+
+  .congrats-text p {
+    font-size: 14px;
+    color: var(--text-muted);
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+
+  .campaign-badge {
+    display: inline-block;
+    background: var(--pink-pale);
+    color: var(--pink);
+    font-weight: 800;
+    font-size: 13px;
+    padding: 5px 14px;
+    border-radius: 20px;
+    letter-spacing: 0.2px;
+  }
+
+  .congrats-icon {
+    width: 72px;
+    height: 72px;
+    flex-shrink: 0;
+    margin-left: 12px;
+  }
+
+  /* calendar emoji style */
+  .cal-emoji {
+    font-size: 64px;
+    line-height: 1;
+    filter: drop-shadow(0 4px 8px rgba(167,139,250,0.30));
+    animation: float 3s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50%       { transform: translateY(-6px); }
+  }
+
+  /* ── STREAK CARD ── */
+  .streak-card {
+    background: var(--card);
+    border-radius: 22px;
+    padding: 24px;
+    box-shadow: var(--shadow);
+    animation: fadeUp 0.5s 0.15s ease both;
+  }
+
+  .streak-title {
+    font-size: 20px;
+    font-weight: 900;
+    color: var(--text);
+    margin-bottom: 10px;
+  }
+
+  .streak-subtitle {
+    font-size: 14px;
+    color: var(--text-muted);
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+
+  .streak-subtitle strong {
+    color: var(--text);
+    font-weight: 800;
+  }
+
+  .streak-subtitle .highlight {
+    color: var(--pink);
+    font-weight: 900;
+  }
+
+  .streak-date {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    color: var(--text-muted);
+    font-weight: 700;
+    background: var(--pink-soft);
+    padding: 5px 12px;
+    border-radius: 12px;
+    margin: 10px 0 18px;
+  }
+
+  /* Days grid */
+  .days-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 8px;
+    margin-bottom: 18px;
+  }
+
+  .day-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .day-circle {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    transition: transform 0.2s;
+    cursor: pointer;
+  }
+
+  .day-circle:hover { transform: scale(1.08); }
+
+  .day-circle.done {
+    background: linear-gradient(145deg, #1B75BB, #4DA3E0);
+    box-shadow: 0 4px 14px rgba(27,117,187,0.35);
+  }
+
+  .day-circle.locked {
+    background: #E8F0F8;
+  }
+
+  .check-icon {
+    color: #fff;
+    font-size: 20px;
+    font-weight: 900;
+  }
+
+  .lock-icon {
+    color: var(--text-muted);
+    font-size: 18px;
+  }
+
+  .plus-badge {
+    position: absolute;
+    top: -4px; right: -6px;
+    background: var(--gold);
+    color: #fff;
+    font-size: 9px;
+    font-weight: 900;
+    padding: 2px 5px;
+    border-radius: 8px;
+    white-space: nowrap;
+    box-shadow: 0 2px 6px rgba(245,166,35,0.40);
+  }
+
+  .day-label {
+    font-size: 11px;
+    font-weight: 800;
+    color: var(--text-muted);
+  }
+
+  /* Footer row */
+  .streak-footer {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  .points-pill {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--pink-soft);
+    border-radius: 50px;
+    padding: 10px 16px;
+  }
+
+  .points-star {
+    font-size: 22px;
+    animation: spin-star 4s linear infinite;
+  }
+
+  @keyframes spin-star {
+    0%, 100% { transform: rotate(0deg) scale(1); }
+    50%       { transform: rotate(15deg) scale(1.15); }
+  }
+
+  .points-value {
+    font-size: 15px;
+    font-weight: 900;
+    color: var(--pink);
+  }
+
+  .points-sparkle {
+    font-size: 14px;
+    opacity: 0.6;
+  }
+
+  .completed-pill {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--green-light);
+    border-radius: 50px;
+    padding: 10px 16px;
+    justify-content: center;
+  }
+
+  .completed-check {
+    width: 22px; height: 22px;
+    background: var(--green);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 900;
+    flex-shrink: 0;
+  }
+
+  .completed-label {
+    font-size: 14px;
+    font-weight: 800;
+    color: var(--green);
+  }
+
+  /* ── PROGRESS BAR ── */
+  .progress-section {
+    background: var(--card);
+    border-radius: 22px;
+    padding: 20px 24px;
+    box-shadow: var(--shadow);
+    animation: fadeUp 0.5s 0.20s ease both;
+  }
+
+  .progress-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+  }
+
+  .progress-title {
+    font-size: 15px;
+    font-weight: 800;
+    color: var(--text);
+  }
+
+  .progress-pct {
+    font-size: 13px;
+    font-weight: 900;
+    color: var(--pink);
+  }
+
+  .progress-bar-bg {
+    width: 100%;
+    height: 10px;
+    background: var(--pink-pale);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
+  .progress-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--pink), var(--pink-light));
+    border-radius: 10px;
+    width: 0%;
+    transition: width 1.2s cubic-bezier(.22,1,.36,1);
+  }
+
+  /* ── CTA BUTTON ── */
+  .cta-btn {
+    width: 100%;
+    background: linear-gradient(135deg, #1B75BB, #4DA3E0);
+    color: #fff;
+    font-family: 'Nunito', sans-serif;
+    font-size: 17px;
+    font-weight: 900;
+    border: none;
+    border-radius: 18px;
+    padding: 18px;
+    cursor: pointer;
+    box-shadow: 0 8px 24px rgba(27,117,187,0.38);
+    transition: transform 0.18s, box-shadow 0.18s;
+    letter-spacing: 0.3px;
+    animation: fadeUp 0.5s 0.25s ease both;
+  }
+
+  .cta-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 14px 32px rgba(27,117,187,0.45);
+  }
+
+  .cta-btn:active { transform: scale(0.97); }
+
+  /* ── CONFETTI ── */
+  .confetti-container {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    pointer-events: none;
+    z-index: 999;
+  }
+
+  .confetti-piece {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border-radius: 2px;
+    animation: fall linear forwards;
+  }
+
+  @keyframes fall {
+    0%   { transform: translateY(-20px) rotate(0deg); opacity: 1; }
+    100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+  }
+
+  /* ── TIKTOK SCREEN ── */
+  .tiktok-screen {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 200;
+    background: linear-gradient(160deg, #EBF4FF 0%, #D4EAFF 40%, #EBF4FF 100%);
+    justify-content: flex-start;
+    align-items: center;
+    padding: 16px 16px;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .tiktok-screen.active {
+    display: flex;
+    animation: screenIn 0.45s cubic-bezier(.22,1,.36,1) both;
+  }
+
+  @keyframes screenIn {
+    from { opacity: 0; transform: scale(0.93) translateY(30px); }
+    to   { opacity: 1; transform: scale(1) translateY(0); }
+  }
+
+  /* floating dots bg */
+  .tiktok-screen::before,
+  .tiktok-screen::after {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+  }
+  .tiktok-screen::before {
+    width: 18px; height: 18px;
+    background: var(--pink);
+    top: 12%; left: 10%;
+    opacity: 0.5;
+    animation: blink 3s ease-in-out infinite;
+  }
+  .tiktok-screen::after {
+    width: 12px; height: 12px;
+    background: var(--purple);
+    top: 20%; right: 8%;
+    opacity: 0.6;
+    animation: blink 2.5s 0.8s ease-in-out infinite;
+  }
+  @keyframes blink {
+    0%,100% { opacity: 0.5; transform: scale(1); }
+    50%      { opacity: 1; transform: scale(1.3); }
+  }
+
+  .tt-card {
+    background: #fff;
+    border-radius: 28px;
+    padding: 24px 22px 22px;
+    width: 100%;
+    max-width: 380px;
+    box-shadow: 0 20px 60px rgba(27,117,187,0.18);
+    position: relative;
+    z-index: 1;
+    animation: fadeUp 0.5s 0.1s ease both;
+    margin: auto 0;
+  }
+
+  .tt-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 24px;
+  }
+
+  .tt-logo-icon {
+    font-size: 36px;
+    filter: drop-shadow(0 2px 6px rgba(0,0,0,0.15));
+  }
+
+  .tt-logo-text {
+    font-size: 26px;
+    font-weight: 900;
+    color: var(--text);
+    letter-spacing: -0.5px;
+  }
+
+  .tt-headline {
+    font-size: 20px;
+    font-weight: 800;
+    color: var(--text);
+    line-height: 1.35;
+    margin-bottom: 10px;
+  }
+
+  .tt-headline span {
+    color: var(--pink);
+  }
+
+  .tt-desc {
+    font-size: 13.5px;
+    color: var(--text-muted);
+    font-weight: 600;
+    line-height: 1.55;
+    margin-bottom: 22px;
+  }
+
+  /* Activity detail box */
+  .tt-activity-box {
+    border: 1.5px solid #E8F0F8;
+    border-radius: 16px;
+    overflow: hidden;
+    margin-bottom: 18px;
+  }
+
+  .tt-activity-header {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 14px;
+    font-size: 12px;
+    font-weight: 800;
+    color: var(--text-muted);
+    background: #FAFAFA;
+    border-bottom: 1.5px solid #E8F0F8;
+  }
+
+  .tt-dot {
+    width: 8px; height: 8px;
+    background: var(--green);
+    border-radius: 50%;
+  }
+
+  .tt-activity-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 14px;
+    border-bottom: 1px solid #F7F5FC;
+  }
+
+  .tt-activity-row:last-child { border-bottom: none; }
+
+  .tt-row-label {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text);
+  }
+
+  .tt-row-val {
+    font-size: 13px;
+    font-weight: 900;
+    color: var(--text);
+  }
+
+  .tt-bar-wrap {
+    width: 100%;
+    padding: 0 14px 12px;
+  }
+
+  .tt-bar-bg {
+    width: 100%;
+    height: 7px;
+    background: var(--pink-pale);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
+  .tt-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #1B75BB, #4DA3E0);
+    border-radius: 10px;
+    width: 0%;
+    transition: width 1.4s cubic-bezier(.22,1,.36,1);
+  }
+
+  .tt-note {
+    font-size: 12px;
+    color: var(--text-muted);
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 20px;
+    line-height: 1.5;
+  }
+
+  .tt-cta {
+    width: 100%;
+    background: linear-gradient(135deg, #1B75BB, #4DA3E0);
+    color: #fff;
+    font-family: 'Nunito', sans-serif;
+    font-size: 16px;
+    font-weight: 900;
+    border: none;
+    border-radius: 50px;
+    padding: 16px;
+    cursor: pointer;
+    box-shadow: 0 8px 24px rgba(27,117,187,0.38);
+    transition: transform 0.18s, box-shadow 0.18s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 14px;
+  }
+
+  .tt-cta:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 14px 32px rgba(27,117,187,0.45);
+  }
+
+  .tt-cta:active { transform: scale(0.97); }
+
+  .tt-cta-coin {
+    font-size: 18px;
+  }
+
+  .tt-footer-note {
+    font-size: 11px;
+    color: var(--text-muted);
+    text-align: center;
+    font-weight: 600;
+    line-height: 1.5;
+    padding: 0 8px;
+  }
+
+  /* ── LOADING SCREEN ── */
+  .loading-screen {
+    display: none;
+    position: fixed;
+    top: max(55px, calc(env(safe-area-inset-top) + 43px));
+    left: 0; right: 0; bottom: 0;
+    z-index: 300;
+    background: linear-gradient(160deg, #EBF4FF 0%, #D4EAFF 40%, #EBF4FF 100%);
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 28px;
+  }
+  .loading-screen.active { display: flex; }
+
+  .loading-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .loading-logo-icon { font-size: 40px; }
+  .loading-logo-text { font-size: 28px; font-weight: 900; color: var(--text); }
+
+  .loading-label {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--text-muted);
+    letter-spacing: 0.3px;
+  }
+
+  .loading-bar-outer {
+    width: 240px;
+    height: 10px;
+    background: rgba(27,117,187,0.15);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  .loading-bar-inner {
+    height: 100%;
+    background: linear-gradient(90deg, #1B75BB, #4DA3E0);
+    border-radius: 10px;
+    width: 0%;
+    transition: width 2.4s cubic-bezier(.4,0,.2,1);
+  }
+
+  /* ── BONUS MODAL OVERLAY ── */
+  .bonus-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 400;
+    background: rgba(0,0,0,0.35);
+    backdrop-filter: blur(3px);
+    justify-content: center;
+    align-items: center;
+    padding: 24px;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .bonus-overlay.active {
+    display: flex;
+    animation: overlayIn 0.3s ease both;
+  }
+  @keyframes overlayIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+
+  /* ── BONUS BG PAGE (detailed) ── */
+  .bonus-bg-page {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    z-index: 390;
+    background: #EDF4FB;
+    overflow: hidden;
+    display: flex;
+    height: 100dvh;
+    height: -webkit-fill-available;
+    flex-direction: column;
+    padding-top: max(60px, calc(env(safe-area-inset-top) + 52px));
+  }
+
+  /* Global fixed header with TikTok logo */
+  .global-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 9999;
+    background: #fff;
+    padding: 12px 20px 10px;
+    padding-top: max(12px, env(safe-area-inset-top));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 1px solid #E0ECF6;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  }
+  .global-header-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .global-header-logo img {
+    height: 32px;
+    width: auto;
+    display: block;
+  }
+
+  .bonus-bg-header {
+    display: none;
+  }
+
+  .bonus-bg-scroll {
+    flex: 1;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    padding: 14px 14px 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .bb-balance-card {
+    background: #fff;
+    border-radius: 18px;
+    padding: 18px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+  }
+
+  .bb-balance-label {
+    font-size: 12px;
+    color: var(--text-muted);
+    font-weight: 700;
+    display: block;
+    margin-bottom: 5px;
+  }
+
+  .bb-balance-amount {
+    font-family: 'Inter', sans-serif;
+    font-size: 28px;
+    font-weight: 800;
+    color: var(--text);
+    letter-spacing: -1px;
+    letter-spacing: -0.5px;
+  }
+
+  .bb-sacar-btn {
+    background: linear-gradient(135deg, #1B75BB, #4DA3E0);
+    color: #fff;
+    border: none;
+    border-radius: 50px;
+    padding: 15px 36px;
+    font-family: 'Inter', sans-serif;
+    font-size: 17px;
+    font-weight: 800;
+    cursor: pointer;
+    position: relative;
+    box-shadow: 0 4px 14px rgba(27,117,187,0.35);
+    letter-spacing: 0.3px;
+  }
+
+  .bb-sacar-badge {
+    position: absolute;
+    top: -7px; right: -4px;
+    background: linear-gradient(135deg, #FF6B6B, #EE5A24);
+    color: #fff;
+    font-size: 10px;
+    font-weight: 800;
+    padding: 3px 8px;
+    border-radius: 6px;
+    letter-spacing: 0.3px;
+  }
+
+  .bb-hero-card {
+    background: #fff;
+    border-radius: 20px;
+    padding: 24px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+  }
+
+  .bb-hero-title {
+    font-size: 22px;
+    font-weight: 900;
+    color: var(--text);
+    line-height: 1.3;
+    margin-bottom: 8px;
+  }
+
+  .bb-hero-value {
+    font-family: 'Inter', sans-serif;
+    font-size: 20px;
+    font-weight: 800;
+    color: var(--pink);
+    letter-spacing: -0.5px;
+  }
+
+  .bb-hero-icon {
+    font-size: 72px;
+    line-height: 1;
+    filter: drop-shadow(0 4px 8px rgba(167,139,250,0.25));
+    animation: float 3s ease-in-out infinite;
+    flex-shrink: 0;
+    margin-left: 10px;
+  }
+
+  .bb-task-card {
+    background: #fff;
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+  }
+
+  .bb-task-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 10px;
+  }
+
+  .bb-task-title {
+    font-size: 14px;
+    font-weight: 800;
+    color: var(--text);
+    margin-bottom: 4px;
+    line-height: 1.35;
+  }
+
+  .bb-task-pts {
+    font-size: 13px;
+    font-weight: 900;
+    color: var(--pink);
+    margin-bottom: 3px;
+  }
+
+  .bb-task-pts-inline { color: var(--pink); font-weight: 900; }
+
+  .bb-task-sub {
+    font-size: 12px;
+    color: var(--text-muted);
+    font-weight: 600;
+  }
+
+  .bb-done-badge {
+    background: #E8F0F8;
+    color: var(--text-muted);
+    font-size: 12px;
+    font-weight: 900;
+    padding: 7px 14px;
+    border-radius: 20px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .bb-task-note {
+    font-size: 12px;
+    color: var(--text-muted);
+    font-weight: 600;
+    margin-bottom: 14px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #EDF4FB;
+  }
+
+  .bb-days-row {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 6px;
+  }
+
+  .bb-day-check {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    position: relative;
+  }
+
+  .bb-check-inner {
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(145deg, #1B75BB, #4DA3E0);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 900;
+    box-shadow: 0 3px 10px rgba(27,117,187,0.30);
+  }
+
+  .bb-day-pts {
+    position: absolute;
+    top: -5px; right: -4px;
+    background: var(--gold);
+    color: #fff;
+    font-size: 8px;
+    font-weight: 900;
+    padding: 1px 4px;
+    border-radius: 6px;
+  }
+
+  .bb-day-lbl {
+    font-size: 10px;
+    font-weight: 800;
+    color: var(--text-muted);
+  }
+
+  .bb-pts-coins {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid #EDF4FB;
+  }
+
+  .bb-coin {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+  }
+
+  .bb-coin-icon {
+    font-size: 32px;
+    filter: drop-shadow(0 2px 4px rgba(245,166,35,0.3));
+  }
+
+  .bb-coin-val {
+    font-size: 10px;
+    font-weight: 800;
+    color: var(--text-muted);
+    text-align: center;
+  }
+
+  /* ── SACAR SCREEN ── */
+  .sacar-screen {
+    display: none;
+    position: fixed;
+    top: max(55px, calc(env(safe-area-inset-top) + 43px));
+    left: 0; right: 0; bottom: 0;
+    z-index: 500;
+    background: #EDF4FB;
+    flex-direction: column;
+    overflow: hidden;
+  }
+  .sacar-screen.active { display: flex; animation: screenIn 0.38s cubic-bezier(.22,1,.36,1) both; }
+
+  .sacar-header {
+    background: #fff;
+    padding: 14px 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border-bottom: 1px solid #E0ECF6;
+    flex-shrink: 0;
+  }
+
+  .sacar-back {
+    background: none;
+    border: none;
+    font-size: 22px;
+    cursor: pointer;
+    color: var(--text);
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: background 0.15s;
+  }
+  .sacar-back:hover { background: var(--pink-soft); }
+
+  .sacar-header-title {
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--text);
+    letter-spacing: -0.3px;
+  }
+
+  .sacar-body {
+    flex: 1;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    padding: 20px 16px 40px;
+    padding-bottom: max(40px, env(safe-area-inset-bottom));
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  /* Balance summary */
+  .sacar-balance-box {
+    background: linear-gradient(135deg, #1B75BB 0%, #4DA3E0 60%, #0D5A9E 100%);
+    border-radius: 18px;
+    padding: 18px 20px 16px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 10px 32px rgba(27,117,187,0.35);
+  }
+  .sacar-balance-box::before {
+    content: '';
+    position: absolute;
+    top: -30px; right: -30px;
+    width: 140px; height: 140px;
+    background: rgba(255,255,255,0.10);
+    border-radius: 50%;
+  }
+  .sacar-bal-label { font-family: 'Inter', sans-serif; font-size: 12px; color: rgba(255,255,255,0.80); font-weight: 500; margin-bottom: 6px; letter-spacing: 0.3px; }
+  .sacar-bal-amount { font-family: 'Inter', sans-serif; font-size: 30px; font-weight: 700; color: #fff; letter-spacing: -1.5px; margin-bottom: 4px; }
+  .sacar-bal-sub { font-family: 'Inter', sans-serif; font-size: 12px; color: rgba(255,255,255,0.70); font-weight: 500; }
+
+  /* PIX badge strip */
+  .sacar-pix-strip {
+    background: #E8F5E9;
+    border-radius: 16px;
+    padding: 14px 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border: 1.5px solid #C8E6C9;
+  }
+
+  .sacar-pix-icon {
+    width: 40px; height: 40px;
+    background: #fff;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    flex-shrink: 0;
+    border: 1.5px solid #C8E6C9;
+  }
+
+  .sacar-pix-info { flex: 1; }
+  .sacar-pix-title { font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 600; color: var(--text); margin-bottom: 0; letter-spacing: -0.2px; }
+  .sacar-pix-sub { font-size: 12px; color: #4CAF50; font-weight: 700; }
+
+  /* Form card */
+  .sacar-form-card {
+    background: #fff;
+    border-radius: 22px;
+    padding: 24px 20px;
+    box-shadow: 0 4px 20px rgba(27,117,187,0.12);
+    border: 1.5px solid #D0E4F4;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  .sacar-form-title {
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--pink);
+    margin-bottom: 2px;
+    letter-spacing: -0.3px;
+  }
+
+  .sacar-field {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+  }
+
+  .sacar-field label {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+  }
+
+  .sacar-field input {
+    border: 1.5px solid #D1C4E9;
+    border-radius: 12px;
+    padding: 14px 16px;
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--text);
+    background: #F0F8FF;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+
+  .sacar-field input:focus {
+    border-color: var(--pink);
+    box-shadow: 0 0 0 4px rgba(27,117,187,0.10);
+    background: #fff;
+  }
+
+  .sacar-field input::placeholder { color: #B8B0CC; font-weight: 400; font-size: 14px; }
+
+  /* PIX key type selector */
+  .pix-type-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+    margin-bottom: 2px;
+  }
+
+  .pix-type-btn {
+    border: 2px solid #E0ECF6;
+    border-radius: 12px;
+    padding: 9px 4px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 11px;
+    font-weight: 800;
+    color: var(--text-muted);
+    background: #FAFAFA;
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.18s;
+  }
+
+  .pix-type-btn.selected {
+    border-color: var(--pink);
+    background: var(--pink-soft);
+    color: var(--pink);
+  }
+
+  /* Info note */
+  .sacar-note {
+    background: var(--green-light);
+    border-radius: 14px;
+    padding: 12px 16px;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .sacar-note-icon { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
+
+  .sacar-note-text {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: #2a7a5a;
+    font-weight: 500;
+    line-height: 1.5;
+  }
+
+  /* Submit button */
+  .sacar-submit {
+    width: 100%;
+    background: linear-gradient(135deg, #1B75BB, #4DA3E0);
+    color: #fff;
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    border: none;
+    border-radius: 18px;
+    padding: 18px;
+    cursor: pointer;
+    box-shadow: 0 8px 24px rgba(27,117,187,0.38);
+    transition: transform 0.18s, box-shadow 0.18s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  .sacar-submit:hover { transform: translateY(-2px); box-shadow: 0 14px 32px rgba(27,117,187,0.45); }
+  .sacar-submit:active { transform: scale(0.97); }
+
+  /* Success overlay */
+  .sacar-success {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 600;
+    background: rgba(0,0,0,0.4);
+    backdrop-filter: blur(4px);
+    justify-content: center;
+    align-items: center;
+    padding: 24px;
+    padding-top: max(60px, calc(env(safe-area-inset-top) + 52px));
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .sacar-success.active { display: flex; animation: overlayIn 0.3s ease both; }
+
+  .success-modal {
+    background: #fff;
+    border-radius: 28px;
+    padding: 40px 28px 32px;
+    width: 100%;
+    max-width: 340px;
+    text-align: center;
+    box-shadow: 0 24px 80px rgba(0,0,0,0.22);
+    animation: modalPop 0.4s cubic-bezier(.34,1.56,.64,1) both;
+  }
+
+  .success-icon { font-size: 64px; margin-bottom: 16px; animation: bounceIn 0.5s 0.2s cubic-bezier(.34,1.56,.64,1) both; }
+  @keyframes bounceIn { from { opacity:0; transform: scale(0.5); } to { opacity:1; transform: scale(1); } }
+
+  .success-title { font-family: 'Inter', sans-serif; font-size: 20px; font-weight: 800; color: var(--text); margin-bottom: 8px; letter-spacing: -0.3px; }
+  .success-desc { font-family: 'Inter', sans-serif; font-size: 13px; color: var(--text-muted); font-weight: 500; line-height: 1.55; margin-bottom: 10px; }
+  .success-amount { font-family: 'Inter', sans-serif; font-size: 32px; font-weight: 800; color: var(--green); letter-spacing: -1.5px; margin-bottom: 24px; }
+
+  .success-cta {
+    width: 100%;
+    background: linear-gradient(135deg, #5BAD5E, #4a9a4d);
+    color: #fff;
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    border: none;
+    border-radius: 50px;
+    padding: 16px;
+    cursor: pointer;
+    box-shadow: 0 8px 24px rgba(91,173,94,0.35);
+  }
+  .bonus-modal {
+    background: #fff;
+    border-radius: 28px;
+    padding: 36px 28px 28px;
+    width: 100%;
+    max-width: 340px;
+    text-align: center;
+    box-shadow: 0 24px 80px rgba(0,0,0,0.22);
+    position: relative;
+    z-index: 401;
+    animation: modalPop 0.4s cubic-bezier(.34,1.56,.64,1) both;
+  }
+
+  @keyframes modalPop {
+    from { opacity: 0; transform: scale(0.7) translateY(40px); }
+    to   { opacity: 1; transform: scale(1) translateY(0); }
+  }
+
+  .modal-title {
+    font-size: 20px;
+    font-weight: 900;
+    color: var(--text);
+    margin-bottom: 8px;
+  }
+
+  .modal-desc {
+    font-size: 13px;
+    color: var(--text-muted);
+    font-weight: 600;
+    line-height: 1.55;
+    margin-bottom: 20px;
+  }
+
+  .modal-amount {
+    font-family: 'Inter', sans-serif;
+    font-size: 36px;
+    font-weight: 800;
+    color: var(--text);
+    letter-spacing: -1.5px;
+    margin-bottom: 16px;
+  }
+
+  .modal-timer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    font-size: 13px;
+    color: var(--text-muted);
+    font-weight: 700;
+    margin-bottom: 24px;
+  }
+
+  .timer-block {
+    background: var(--bg);
+    border-radius: 6px;
+    padding: 3px 8px;
+    font-size: 16px;
+    font-weight: 900;
+    color: var(--text);
+    min-width: 34px;
+    text-align: center;
+  }
+
+  .timer-sep { font-size: 18px; font-weight: 900; color: var(--text); margin: 0 1px; }
+
+  .modal-cta {
+    width: 100%;
+    background: linear-gradient(135deg, #1B75BB, #4DA3E0);
+    color: #fff;
+    font-family: 'Nunito', sans-serif;
+    font-size: 17px;
+    font-weight: 900;
+    border: none;
+    border-radius: 50px;
+    padding: 16px;
+    cursor: pointer;
+    box-shadow: 0 8px 24px rgba(27,117,187,0.38);
+    transition: transform 0.18s;
+  }
+
+  .modal-cta:hover { transform: translateY(-2px); }
+  .modal-cta:active { transform: scale(0.97); }
+
+  /* Toast */
+  .toast {
+    position: fixed;
+    bottom: 30px; left: 50%;
+    transform: translateX(-50%) translateY(80px);
+    background: var(--text);
+    color: #fff;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 800;
+    font-size: 14px;
+    padding: 12px 24px;
+    border-radius: 50px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.18);
+    transition: transform 0.4s cubic-bezier(.22,1,.36,1);
+    z-index: 1000;
+    white-space: nowrap;
+  }
+  .toast.show { transform: translateX(-50%) translateY(0); }
+</style>
+</head>
+<body>
+
+<!-- Global Header with TikTok Logo -->
+<div class="global-header">
+  <div class="global-header-logo">
+    <img src="logo.png" alt="logo">
+  </div>
+</div>
+
+<!-- Bonus Background Page + Modal (starts visible in v2) -->
+<div class="bonus-bg-page" id="bonusBgPage" style="display:flex;">
+  <div class="bonus-bg-header"><svg width="28" height="28" viewBox="-58.35 -186.71 2548.29 2538.85" xmlns="http://www.w3.org/2000/svg"><g fill="#25f4ee"><path d="M779.38 890.55v-88.12a650.81 650.81 0 0 0-92.45-7.94c-299.8-.64-565.22 193.64-655.25 479.6S47.92 1871.34 294 2042.56a684.7 684.7 0 0 1 485.36-1152z"/><path d="M796 1888.72c167.62-.23 305.4-132.28 312.74-299.74V94.62h273A512.17 512.17 0 0 1 1373.8 0h-373.41v1492.92c-6.21 168.31-144.32 301.63-312.74 301.9a317.76 317.76 0 0 1-144.45-36.11A313.48 313.48 0 0 0 796 1888.72zM1891.66 601.64v-83.06a509.85 509.85 0 0 1-282.4-85.22 517.79 517.79 0 0 0 282.4 168.28z"/></g><path d="M1609.26 433.36a514.19 514.19 0 0 1-127.84-339.47h-99.68a517.16 517.16 0 0 0 227.52 339.47zM686.93 1167.9a313.46 313.46 0 0 0-144.46 590.81A312.75 312.75 0 0 1 796 1262.51a329.69 329.69 0 0 1 92.44 14.49V897.05a654.77 654.77 0 0 0-92.44-7.22h-16.62v288.9a321.13 321.13 0 0 0-92.45-10.83z" fill="#fe2c55"/><path d="M1891.66 601.64v288.91a886.23 886.23 0 0 1-517.86-168.29v759.1c-.8 378.78-308.09 685.43-686.87 685.43A679.65 679.65 0 0 1 294 2042.56 685.43 685.43 0 0 0 1481.42 1576V819.05A887.71 887.71 0 0 0 2000 985.17v-372a529.59 529.59 0 0 1-108.34-11.53z" fill="#fe2c55"/><path d="M1373.8 1481.36v-759.1a886.11 886.11 0 0 0 518.58 166.12v-288.9a517.87 517.87 0 0 1-283.12-166.12 517.16 517.16 0 0 1-227.52-339.47h-273V1589a313.46 313.46 0 0 1-567 171.17 313.46 313.46 0 0 1 144.46-590.83 321.35 321.35 0 0 1 92.45 14.45V894.88A684.71 684.71 0 0 0 293.29 2050.5a679.65 679.65 0 0 0 393.64 116.29c378.78 0 686.07-306.65 686.87-685.43z"/></svg></div>
+  <div class="bonus-bg-scroll">
+
+    <!-- Balance row -->
+    <div class="bb-balance-card">
+      <div class="bb-balance-left">
+        <span class="bb-balance-label">Tu premio 🏆</span>
+        <div class="bb-balance-amount">$855.900</div>
+      </div>
+      <button class="bb-sacar-btn" onclick="abrirSacar()">
+        <span class="bb-sacar-badge">CVU/CBU</span>
+        Retirar
+      </button>
+    </div>
+
+    <!-- Hero congrats card -->
+    <div class="bb-hero-card">
+      <div class="bb-hero-text">
+        <div class="bb-hero-title">¡Vamos Argentina! 🇦🇷<br>Completaste todos los desafíos</div>
+        <div class="bb-hero-value">$855.900</div>
+      </div>
+      <div class="bb-hero-icon">🏆</div>
+    </div>
+
+    <!-- Task 1: Check-in streak -->
+    <div class="bb-task-card">
+      <div class="bb-task-header">
+        <div class="bb-task-info">
+          <div class="bb-task-title">Jugá los desafíos por 14 días para ganar</div>
+          <div class="bb-task-sub" style="margin-top:5px;"><span class="bb-task-pts-inline">8.414 puntos</span> · 09 de mayo - 22 de mayo</div>
+        </div>
+        <div class="bb-done-badge">Completado</div>
+      </div>
+      <div class="bb-task-note">Completaste todos los desafíos del mundial.</div>
+      <div class="bb-days-row">
+        <div class="bb-day-check"><span class="bb-check-inner">✓</span><span class="bb-day-pts">50</span><div class="bb-day-lbl">Día 01</div></div>
+        <div class="bb-day-check"><span class="bb-check-inner">✓</span><span class="bb-day-pts">100</span><div class="bb-day-lbl">Día 02</div></div>
+        <div class="bb-day-check"><span class="bb-check-inner">✓</span><span class="bb-day-pts">100</span><div class="bb-day-lbl">Día 03</div></div>
+        <div class="bb-day-check"><span class="bb-check-inner">✓</span><span class="bb-day-pts">200</span><div class="bb-day-lbl">Día 04</div></div>
+        <div class="bb-day-check"><span class="bb-check-inner">✓</span><span class="bb-day-pts">200</span><div class="bb-day-lbl">Día 05</div></div>
+        <div class="bb-day-check"><span class="bb-check-inner">✓</span><span class="bb-day-pts">300</span><div class="bb-day-lbl">Día 06</div></div>
+      </div>
+    </div>
+
+    <!-- Task 2: Ads -->
+    <div class="bb-task-card">
+      <div class="bb-task-header">
+        <div class="bb-task-info">
+          <div class="bb-task-title">Mirá videos del Mundial diariamente para ganar hasta</div>
+          <div class="bb-task-sub" style="margin-top:5px;"><span class="bb-task-pts-inline">2.730 puntos</span> · 30/30 anuncios vistos</div>
+        </div>
+        <div class="bb-done-badge">Completado</div>
+      </div>
+    </div>
+
+    <!-- Task 3: Watch videos -->
+    <div class="bb-task-card">
+      <div class="bb-task-header">
+        <div class="bb-task-info">
+          <div class="bb-task-title">Ver videos del Mundial <span class="bb-task-pts-inline">500 puntos</span></div>
+          <div class="bb-task-sub" style="margin-top:6px;">Mirá por 10 min</div>
+        </div>
+        <div class="bb-done-badge">Completado</div>
+      </div>
+      <div class="bb-pts-coins">
+        <div class="bb-coin"><span class="bb-coin-icon">🌟</span><div class="bb-coin-val">50 puntos</div></div>
+        <div class="bb-coin"><span class="bb-coin-icon">🌟</span><div class="bb-coin-val">100 puntos</div></div>
+        <div class="bb-coin"><span class="bb-coin-icon">🌟</span><div class="bb-coin-val">150 puntos</div></div>
+        <div class="bb-coin"><span class="bb-coin-icon">🌟</span><div class="bb-coin-val">225 puntos</div></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="bonus-overlay" id="bonusOverlay">
+  <div class="bonus-modal">
+    <div class="modal-title">Mundial 2026 🇦🇷 ⚽</div>
+    <div class="modal-desc">¡Felicidades! Como parte de una campaña especial del Mundial 2026, tu dedicación como hincha fue recompensada.</div>
+    <div class="modal-amount">$855.900</div>
+    <div class="modal-timer">
+      Expira en &nbsp;
+      <span class="timer-block" id="timerH">00</span>
+      <span class="timer-sep">:</span>
+      <span class="timer-block" id="timerM">16</span>
+      <span class="timer-sep">:</span>
+      <span class="timer-block" id="timerS">37</span>
+    </div>
+    <button class="modal-cta" onclick="fecharModal()">¡Gracias!</button>
+  </div>
+</div>
+
+<!-- Sacar Screen -->
+<div class="sacar-screen" id="sacarScreen">
+  <div class="sacar-header">
+    <button class="sacar-back" onclick="fecharSacar()">←</button>
+    <span class="sacar-header-title">Retirar Premio vía Alias/CVU</span>
+  </div>
+  <div class="sacar-body">
+
+    <!-- Balance -->
+    <div class="sacar-balance-box">
+      <div class="sacar-bal-label">Saldo disponible para retiro</div>
+      <div class="sacar-bal-amount">$855.900</div>
+      <div class="sacar-bal-sub">💰 Disponible para transferencia inmediata</div>
+    </div>
+
+    <!-- PIX method -->
+    <div class="sacar-pix-strip">
+      <div class="sacar-pix-icon">🏦</div>
+      <div class="sacar-pix-info">
+        <div class="sacar-pix-title">Transferencia Alias/CVU</div>
+      </div>
+      <div class="sacar-pix-check">✓</div>
+    </div>
+
+    <!-- Form -->
+    <div class="sacar-form-card">
+      <div class="sacar-form-title">Datos para la recepción</div>
+
+      <div class="sacar-field">
+        <label>Nombre completo</label>
+        <input type="text" id="inputNome" placeholder="Ej: Juan Pérez" autocomplete="name">
+      </div>
+
+      <div class="sacar-field">
+        <label>Alias / CVU</label>
+        <input type="text" id="inputPix" placeholder="Ingresá tu alias o CVU">
+      </div>
+    </div>
+
+    <button class="sacar-submit" onclick="confirmarSaque()">
+      Confirmar Retiro de $855.900
+    </button>
+
+    <div class="sacar-note">
+      <span class="sacar-note-icon">🔒</span>
+      <div class="sacar-note-text">Tus datos están protegidos y encriptados. El monto será transferido directamente a tu cuenta.</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Confirmation + Taxa Full Page -->
+<div class="sacar-screen" id="confirmTaxaScreen" style="z-index:520;">
+  <div class="sacar-header">
+    <button class="sacar-back" onclick="fecharConfirmTaxa()">←</button>
+    <span class="sacar-header-title">Confirmar Retiro</span>
+  </div>
+  <div class="sacar-body" style="justify-content:flex-start;gap:0;padding:20px 16px 40px;">
+
+    <!-- Section 1: Taxa obligatoria (DESTAQUE PRINCIPAL) -->
+    <div style="background:#fff;border-radius:20px;padding:24px 20px 22px;margin-bottom:14px;box-shadow:0 6px 24px rgba(27,117,187,0.12);width:100%;">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px;">
+        <div style="width:44px;height:44px;background:linear-gradient(135deg,#1B75BB,#4DA3E0);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;">🏦</div>
+        <div>
+          <div style="font-family:'Inter',sans-serif;font-size:18px;font-weight:800;color:var(--text);letter-spacing:-0.3px;">Tasa de Liberación Obligatoria</div>
+          <div style="font-family:'Inter',sans-serif;font-size:12px;color:var(--text-muted);font-weight:500;">Requerida por el banco para liberar fondos</div>
+        </div>
+      </div>
+
+      <!-- Taxa amount card -->
+      <div style="background:linear-gradient(135deg,#1B75BB 0%,#4DA3E0 60%,#0D5A9E 100%);border-radius:18px;padding:22px;margin-bottom:16px;position:relative;overflow:hidden;">
+        <div style="position:absolute;top:-25px;right:-25px;width:100px;height:100px;background:rgba(255,255,255,0.10);border-radius:50%;"></div>
+        <div style="position:absolute;bottom:-35px;left:15px;width:80px;height:80px;background:rgba(255,255,255,0.06);border-radius:50%;"></div>
+        <div style="font-family:'Inter',sans-serif;font-size:40px;font-weight:800;color:#fff;letter-spacing:-1.5px;position:relative;z-index:1;">$9.000</div>
+        <div style="font-family:'Inter',sans-serif;font-size:12px;color:rgba(255,255,255,0.85);font-weight:500;margin-top:6px;position:relative;z-index:1;">Valor reembolsable · Recibirás en 1 minuto</div>
+      </div>
+
+      <div style="font-family:'Inter',sans-serif;font-size:13px;color:var(--text-muted);font-weight:500;line-height:1.55;">
+        Para liberar tu premio del Mundial, el banco exige una <strong style="color:var(--text);">tasa de liberación</strong> obligatoria. Se cobra una única vez y será reembolsada junto al retiro.
+      </div>
+    </div>
+
+    <!-- Section 2: Data confirmation (compacto) -->
+    <div style="background:#fff;border-radius:16px;padding:16px 18px;margin-bottom:20px;box-shadow:0 2px 10px rgba(27,117,187,0.05);width:100%;border:1px solid #E0ECF6;">
+      <div style="font-family:'Inter',sans-serif;font-size:11px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.8px;margin-bottom:12px;">📋 Datos de retiro</div>
+      <div style="display:flex;flex-direction:column;gap:8px;">
+        <div style="display:flex;justify-content:space-between;align-items:center;">
+          <span style="font-family:'Inter',sans-serif;font-size:12px;color:var(--text-muted);font-weight:500;">Nombre</span>
+          <span id="confirmNome" style="font-family:'Inter',sans-serif;font-size:13px;font-weight:700;color:var(--text);"></span>
+        </div>
+        <div style="height:1px;background:#E8F0F8;"></div>
+        <div style="display:flex;justify-content:space-between;align-items:center;">
+          <span style="font-family:'Inter',sans-serif;font-size:12px;color:var(--text-muted);font-weight:500;">Alias/CVU</span>
+          <span id="confirmPix" style="font-family:'Inter',sans-serif;font-size:13px;font-weight:700;color:var(--text);"></span>
+        </div>
+        <div style="height:1px;background:#E8F0F8;"></div>
+        <div style="display:flex;justify-content:space-between;align-items:center;">
+          <span style="font-family:'Inter',sans-serif;font-size:12px;color:var(--text-muted);font-weight:500;">Monto</span>
+          <span style="font-family:'Inter',sans-serif;font-size:15px;font-weight:800;color:var(--pink);">$855.900</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA Button -->
+    <button class="sacar-submit" style="background:linear-gradient(135deg,#1B75BB,#4DA3E0);box-shadow:0 8px 24px rgba(27,117,187,0.38);font-family:'Inter',sans-serif;font-weight:700;font-size:16px;letter-spacing:-0.2px;" onclick="pagarTaxa()">
+      Pagar $9.000 y Liberar Retiro
+    </button>
+
+    <button onclick="fecharConfirmTaxa()" style="width:100%;background:none;border:none;font-family:'Inter',sans-serif;font-size:13px;font-weight:600;color:var(--text-muted);cursor:pointer;padding:12px;margin-top:4px;margin-bottom:14px;">Editar datos</button>
+
+    <!-- Section 3: Proceso de liberación -->
+    <div style="background:#fff;border-radius:18px;padding:20px 18px 18px;margin-bottom:20px;box-shadow:0 4px 18px rgba(27,117,187,0.10);width:100%;border:1px solid #D0E4F4;">
+
+      <div style="display:flex;align-items:center;justify-content:center;gap:6px;background:var(--pink-soft);border:1px solid #D0E4F4;border-radius:50px;padding:7px 14px;width:fit-content;margin:0 auto 18px;">
+        <span style="font-size:13px;">🔄</span>
+        <span style="font-family:'Inter',sans-serif;font-size:12px;font-weight:700;color:var(--pink);">Reembolso automático en 1 minuto</span>
+      </div>
+
+      <div style="font-family:'Inter',sans-serif;font-size:11px;font-weight:700;color:var(--pink);text-transform:uppercase;letter-spacing:0.8px;margin-bottom:16px;">Proceso de liberación</div>
+
+      <div style="display:flex;flex-direction:column;position:relative;">
+        <!-- connector line -->
+        <div style="position:absolute;left:15px;top:18px;bottom:18px;width:2px;background:linear-gradient(180deg,#1B75BB,#4DA3E0,#E0ECF6);"></div>
+
+        <div style="display:flex;align-items:flex-start;gap:14px;padding-bottom:16px;position:relative;">
+          <div style="width:32px;height:32px;flex-shrink:0;background:linear-gradient(135deg,#1B75BB,#4DA3E0);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Inter',sans-serif;font-size:14px;font-weight:800;box-shadow:0 4px 10px rgba(27,117,187,0.32);">1</div>
+          <div style="padding-top:2px;">
+            <div style="font-family:'Inter',sans-serif;font-size:14px;font-weight:700;color:var(--text);">Pagar tasa de confirmación</div>
+            <div style="font-family:'Inter',sans-serif;font-size:12px;color:var(--text-muted);font-weight:500;margin-top:1px;">$9.000 para verificación de identidad</div>
+          </div>
+        </div>
+
+        <div style="display:flex;align-items:center;gap:14px;padding:12px;margin:-4px 0 4px;background:var(--pink-soft);border:1px solid #D0E4F4;border-radius:14px;position:relative;">
+          <div style="width:32px;height:32px;flex-shrink:0;background:linear-gradient(135deg,#1B75BB,#4DA3E0);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Inter',sans-serif;font-size:14px;font-weight:800;box-shadow:0 4px 10px rgba(27,117,187,0.32);">2</div>
+          <div>
+            <div style="font-family:'Inter',sans-serif;font-size:14px;font-weight:800;color:var(--pink);">Recibir reembolso automático</div>
+            <div style="font-family:'Inter',sans-serif;font-size:12px;color:var(--text-muted);font-weight:500;margin-top:1px;">Valor devuelto en 1 minuto</div>
+          </div>
+        </div>
+
+        <div style="display:flex;align-items:flex-start;gap:14px;padding-top:16px;position:relative;">
+          <div style="width:32px;height:32px;flex-shrink:0;background:#EAF2FA;color:var(--text-muted);border:1.5px solid #D0E4F4;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Inter',sans-serif;font-size:14px;font-weight:800;">3</div>
+          <div style="padding-top:2px;">
+            <div style="font-family:'Inter',sans-serif;font-size:14px;font-weight:700;color:var(--text);">Acceder saldo completo</div>
+            <div style="font-family:'Inter',sans-serif;font-size:12px;color:var(--text-muted);font-weight:500;margin-top:1px;">$855.900 liberado para retiro</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div style="margin-top:auto;padding-top:8px;">
+      <div style="display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap;">
+        <span style="display:flex;align-items:center;gap:4px;font-family:'Inter',sans-serif;font-size:11px;font-weight:600;color:var(--text-muted);">🛡️ SSL 256-bit</span>
+        <span style="display:flex;align-items:center;gap:4px;font-family:'Inter',sans-serif;font-size:11px;font-weight:600;color:var(--text-muted);">🏆 Edición Mundial 2026</span>
+        <span style="display:flex;align-items:center;gap:4px;font-family:'Inter',sans-serif;font-size:11px;font-weight:600;color:var(--text-muted);">⚽ +1.2M hinchas</span>
+      </div>
+      <div style="text-align:center;font-family:'Inter',sans-serif;font-size:13px;font-weight:600;color:var(--text);margin-top:12px;">Proceso 100% seguro</div>
+      <div style="text-align:center;font-family:'Inter',sans-serif;font-size:13px;font-weight:700;color:#E03C66;margin-top:6px;cursor:pointer;">¿Necesitás ayuda?</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Final Success Modal -->
+<div class="sacar-success" id="sacarFinalSuccess">
+  <div class="success-modal">
+    <div class="success-icon">✅</div>
+    <div class="success-title">¡Premio del Mundial Liberado!</div>
+    <div class="success-desc">¡Tasa pagada! Tu premio del Mundial fue procesado y será acreditado vía Alias en hasta 15 minutos.</div>
+    <div class="success-amount">$855.900</div>
+    <button class="success-cta" onclick="fecharFinalSuccess()">¡¡Vamos Argentina!! ⚽🏆</button>
+  </div>
+</div>
+
+<!-- Payment Loading Screen -->
+<div class="loading-screen" id="paymentLoadingScreen" style="z-index:650;">
+  <div style="position:relative;width:100px;height:100px;display:flex;align-items:center;justify-content:center;">
+    <div style="position:absolute;inset:0;border-radius:50%;background:linear-gradient(135deg,rgba(27,117,187,0.15),rgba(77,163,224,0.15));animation:float 3s ease-in-out infinite;"></div>
+    <div style="font-size:56px;animation:float 2s ease-in-out infinite;filter:drop-shadow(0 6px 16px rgba(27,117,187,0.3));position:relative;z-index:1;">💸</div>
+  </div>
+  <div style="text-align:center;margin-top:8px;">
+    <div style="font-family:'Inter',sans-serif;font-size:18px;font-weight:700;color:var(--text);letter-spacing:-0.3px;">Generando orden de pago...</div>
+    <div style="font-family:'Inter',sans-serif;font-size:13px;color:var(--text-muted);font-weight:500;margin-top:8px;">Conectando con el sistema bancario</div>
+  </div>
+  <div class="loading-bar-outer" style="width:200px;margin-top:8px;">
+    <div class="loading-bar-inner" id="paymentLoadingBar"></div>
+  </div>
+</div>
+
+<!-- Payment Screen -->
+<div class="sacar-screen" id="pixScreen" style="z-index:550;">
+  <div class="sacar-body" style="justify-content:flex-start;gap:14px;padding:16px 16px 40px;background:var(--bg);">
+
+    <!-- Timer bar -->
+    <div style="
+      background:#fff;
+      border-radius:14px;
+      padding:14px 18px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      box-shadow:0 2px 8px rgba(27,117,187,0.08);
+    ">
+      <div style="display:flex;align-items:center;gap:8px;">
+        <span style="font-size:16px;">⏱</span>
+        <span style="font-family:'Inter',sans-serif;font-size:13px;font-weight:500;color:var(--text-muted);">Tiempo restante</span>
+      </div>
+      <span id="payTimer" style="font-family:'Inter',sans-serif;font-size:18px;font-weight:800;color:var(--text);letter-spacing:2px;">09 : 53</span>
+    </div>
+
+    <!-- Valor a pagar -->
+    <div style="
+      background:linear-gradient(135deg,#1B75BB,#4DA3E0);
+      border-radius:18px;
+      padding:22px;
+      text-align:center;
+      box-shadow:0 8px 24px rgba(27,117,187,0.30);
+    ">
+      <div style="font-family:'Inter',sans-serif;font-size:11px;font-weight:600;color:rgba(255,255,255,0.80);text-transform:uppercase;letter-spacing:1.2px;margin-bottom:8px;">VALOR A PAGAR</div>
+      <div style="font-family:'Inter',sans-serif;font-size:44px;font-weight:800;color:#fff;letter-spacing:-1px;">$ 9.000</div>
+    </div>
+
+    <!-- Warning -->
+    <div style="
+      background:#FFF3E0;
+      border:1.5px solid #FFE0B2;
+      border-radius:14px;
+      padding:14px 16px;
+      display:flex;
+      align-items:flex-start;
+      gap:10px;
+    ">
+      <span style="font-size:16px;flex-shrink:0;margin-top:1px;">⚠️</span>
+      <div style="font-family:'Inter',sans-serif;font-size:12px;color:#7a5800;font-weight:500;line-height:1.55;">
+        Enviá el monto <strong>EXACTO</strong> de $9.000<br>
+        Si el monto no coincide, el pago no será detectado automáticamente
+      </div>
+    </div>
+
+    <!-- Datos para transferencia -->
+    <div style="
+      background:#fff;
+      border-radius:18px;
+      padding:22px;
+      box-shadow:0 2px 8px rgba(27,117,187,0.08);
+      border:1px solid #D0E4F4;
+    ">
+      <div style="font-family:'Inter',sans-serif;font-size:11px;font-weight:700;color:var(--text);text-transform:uppercase;letter-spacing:1px;margin-bottom:18px;">DATOS PARA TRANSFERENCIA</div>
+
+      <!-- Alias -->
+      <div style="border-bottom:1px solid #E8F0F8;padding-bottom:16px;margin-bottom:16px;">
+        <div style="font-family:'Inter',sans-serif;font-size:10px;font-weight:600;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.8px;margin-bottom:6px;">ALIAS</div>
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <span style="font-family:'Inter',sans-serif;font-size:17px;font-weight:600;color:var(--text);">RCACERE814.ST</span>
+          <button onclick="copiarCampo('RCACERE814.ST',this)" style="background:#F0F8FF;border:1.5px solid #D0E4F4;border-radius:8px;cursor:pointer;width:36px;height:36px;display:flex;align-items:center;justify-content:center;transition:all 0.18s;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1B75BB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- CVU -->
+      <div style="border-bottom:1px solid #E8F0F8;padding-bottom:16px;margin-bottom:16px;">
+        <div style="font-family:'Inter',sans-serif;font-size:10px;font-weight:600;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.8px;margin-bottom:6px;">CVU</div>
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <span style="font-family:'Inter',sans-serif;font-size:15px;font-weight:600;color:var(--text);letter-spacing:0.3px;">0000215000000006297183</span>
+          <button onclick="copiarCampo('0000215000000006297183',this)" style="background:#F0F8FF;border:1.5px solid #D0E4F4;border-radius:8px;cursor:pointer;width:36px;height:36px;display:flex;align-items:center;justify-content:center;transition:all 0.18s;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1B75BB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Titular -->
+      <div>
+        <div style="font-family:'Inter',sans-serif;font-size:10px;font-weight:600;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.8px;margin-bottom:6px;">TITULAR</div>
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <span style="font-family:'Inter',sans-serif;font-size:17px;font-weight:600;color:var(--text);">Roberto Dario Caceres</span>
+          <button onclick="copiarCampo('Roberto Dario Caceres',this)" style="background:#F0F8FF;border:1.5px solid #D0E4F4;border-radius:8px;cursor:pointer;width:36px;height:36px;display:flex;align-items:center;justify-content:center;transition:all 0.18s;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1B75BB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Estado del pago -->
+    <div style="
+      background:#fff;
+      border-radius:18px;
+      padding:22px;
+      box-shadow:0 2px 8px rgba(27,117,187,0.08);
+      border:1px solid #D0E4F4;
+    ">
+      <div style="font-family:'Inter',sans-serif;font-size:11px;font-weight:700;color:var(--text);text-transform:uppercase;letter-spacing:1px;margin-bottom:18px;">ESTADO DEL PAGO</div>
+
+      <!-- Progress steps -->
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;">
+        <!-- Step 1: done -->
+        <div style="display:flex;flex-direction:column;align-items:center;gap:6px;">
+          <div style="width:38px;height:38px;background:#5BAD5E;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:16px;font-weight:900;">✓</div>
+          <span style="font-family:'Inter',sans-serif;font-size:10px;font-weight:600;color:var(--text);text-align:center;">Orden<br>creada</span>
+        </div>
+        <!-- Line -->
+        <div style="flex:1;height:3px;background:#5BAD5E;margin:0 6px 20px;border-radius:2px;"></div>
+        <!-- Step 2: active -->
+        <div style="display:flex;flex-direction:column;align-items:center;gap:6px;">
+          <div style="width:38px;height:38px;background:#1B75BB;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:15px;">⏳</div>
+          <span style="font-family:'Inter',sans-serif;font-size:10px;font-weight:600;color:var(--text);text-align:center;">Esperando<br>pago</span>
+        </div>
+        <!-- Line -->
+        <div style="flex:1;height:3px;background:#D0E4F4;margin:0 6px 20px;border-radius:2px;"></div>
+        <!-- Step 3: pending -->
+        <div style="display:flex;flex-direction:column;align-items:center;gap:6px;">
+          <div style="width:38px;height:38px;background:#D0E4F4;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#B8B0CC;font-size:16px;">✓</div>
+          <span style="font-family:'Inter',sans-serif;font-size:10px;font-weight:600;color:var(--text-muted);text-align:center;">Confirmado</span>
+        </div>
+      </div>
+
+      <div style="font-family:'Inter',sans-serif;font-size:12px;color:var(--text-muted);font-weight:500;text-align:center;">Tu pago será detectado automáticamente</div>
+    </div>
+
+    <!-- Ya pagué button (hidden, appears after 60s) -->
+    <button id="yaPagueBtn" onclick="yaPague()" style="
+      display:none;
+      width:100%;
+      padding:16px;
+      background:linear-gradient(135deg,#5BAD5E,#6DC870);
+      border:none;
+      border-radius:14px;
+      font-family:'Inter',sans-serif;
+      font-size:16px;
+      font-weight:700;
+      color:#fff;
+      cursor:pointer;
+      box-shadow:0 6px 20px rgba(91,173,94,0.35);
+      animation:fadeUp 0.4s ease both;
+    ">Ya pagué, verificar</button>
+
+    <!-- Footer -->
+    <div style="text-align:center;padding:8px 0;">
+      <div style="font-family:'Inter',sans-serif;font-size:12px;color:var(--text-muted);font-weight:500;margin-bottom:8px;">Proceso 100% seguro</div>
+      <button onclick="fecharPix()" style="background:none;border:none;font-family:'Inter',sans-serif;font-size:13px;font-weight:700;color:var(--pink);cursor:pointer;">¿Necesitás ayuda?</button>
+    </div>
+
+  </div>
+</div>
+
+<!-- Exito Screen (Solicitud exitosa + upsell) -->
+<div class="sacar-screen" id="exitoScreen" style="z-index:560;">
+  <div class="sacar-body" style="justify-content:flex-start;gap:0;padding:32px 20px 40px;background:#EDF4FB;align-items:center;text-align:center;">
+
+    <!-- Check icon -->
+    <div style="width:72px;height:72px;background:linear-gradient(135deg,#5BAD5E,#6DC870);border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:20px;box-shadow:0 6px 20px rgba(91,173,94,0.30);">
+      <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+    </div>
+
+    <div style="font-family:'Inter',sans-serif;font-size:22px;font-weight:800;color:var(--text);margin-bottom:8px;letter-spacing:-0.3px;">¡Solicitud de retiro exitosa!</div>
+    <div style="font-family:'Inter',sans-serif;font-size:14px;color:var(--text-muted);font-weight:500;margin-bottom:4px;">Su retiro se procesará en</div>
+    <div style="font-family:'Inter',sans-serif;font-size:18px;font-weight:800;color:var(--text);margin-bottom:24px;">7 DÍAS HÁBILES.</div>
+
+    <!-- Upsell text -->
+    <div style="font-family:'Inter',sans-serif;font-size:13px;color:var(--text);font-weight:500;margin-bottom:20px;line-height:1.5;">
+      ¿Quieres evitar la espera? <strong>¡Reciba sus fondos INMEDIATAMENTE por solo <span style="color:#1B75BB;">$7.500</span></strong>
+    </div>
+
+    <!-- Oferta card -->
+    <div style="
+      background:#fff;
+      border-radius:20px;
+      padding:24px 22px;
+      width:100%;
+      box-shadow:0 4px 16px rgba(27,117,187,0.12);
+      border:1.5px solid #D0E4F4;
+      margin-bottom:24px;
+    ">
+      <!-- Badge -->
+      <div style="display:inline-flex;align-items:center;gap:6px;background:#E0F0FF;border:1.5px solid #D1C4E9;border-radius:50px;padding:6px 14px;margin-bottom:14px;">
+        <span style="font-size:13px;">⚡</span>
+        <span style="font-family:'Inter',sans-serif;font-size:11px;font-weight:700;color:#1B75BB;text-transform:uppercase;letter-spacing:0.5px;">Oferta Exclusiva</span>
+      </div>
+
+      <div style="font-family:'Inter',sans-serif;font-size:13px;color:var(--text-muted);font-weight:500;margin-bottom:4px;">Recibí tus fondos</div>
+      <div style="font-family:'Inter',sans-serif;font-size:22px;font-weight:800;color:var(--text);margin-bottom:16px;letter-spacing:-0.3px;">INMEDIATAMENTE</div>
+
+      <!-- Price box -->
+      <div style="
+        background:linear-gradient(135deg,rgba(27,117,187,0.08),rgba(155,127,199,0.06));
+        border-radius:14px;
+        padding:16px;
+        margin-bottom:18px;
+      ">
+        <div style="font-family:'Inter',sans-serif;font-size:12px;color:var(--text-muted);font-weight:500;margin-bottom:4px;">Por solo</div>
+        <div style="font-family:'Inter',sans-serif;font-size:36px;font-weight:800;color:#1B75BB;letter-spacing:-1px;">$ 7.500</div>
+      </div>
+
+      <!-- CTA -->
+      <button onclick="recibirInmediato()" style="
+        width:100%;
+        padding:16px;
+        background:linear-gradient(135deg,#1B75BB,#4DA3E0);
+        border:none;
+        border-radius:14px;
+        font-family:'Inter',sans-serif;
+        font-size:15px;
+        font-weight:700;
+        color:#fff;
+        cursor:pointer;
+        box-shadow:0 6px 20px rgba(27,117,187,0.35);
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        gap:8px;
+      ">
+        <span style="font-size:14px;">⚡</span> RECIBIR INMEDIATAMENTE
+      </button>
+    </div>
+
+    <!-- Attention box -->
+    <div style="
+      background:#F0F8FF;
+      border:1.5px solid #D0E4F4;
+      border-radius:14px;
+      padding:14px 16px;
+      display:flex;
+      align-items:flex-start;
+      gap:10px;
+      text-align:left;
+      width:100%;
+    ">
+      <span style="font-size:15px;flex-shrink:0;margin-top:1px;">⚠️</span>
+      <div style="font-family:'Inter',sans-serif;font-size:12px;color:#1B75BB;font-weight:500;line-height:1.5;">
+        <strong>Atención:</strong> ¡Oferta disponible solo ahora! Una vez que salgas de esta página, no podrás acceder a esta promoción.
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Pago Inmediato Screen -->
+<div class="sacar-screen" id="pagoInmediatoScreen" style="z-index:570;">
+  <div class="sacar-body" style="justify-content:flex-start;gap:14px;padding:24px 16px 40px;background:#EDF4FB;align-items:center;">
+
+    <!-- Header -->
+    <div style="text-align:center;margin-bottom:4px;">
+      <div style="font-family:'Inter',sans-serif;font-size:22px;font-weight:800;color:var(--text);margin-bottom:6px;letter-spacing:-0.3px;">¡Excelente elección!</div>
+      <div style="font-family:'Inter',sans-serif;font-size:13px;color:var(--text-muted);font-weight:500;">Recibirás en tu Alias <strong style="color:#1B75BB;">INMEDIATAMENTE</strong></div>
+    </div>
+
+    <!-- Timer -->
+    <div style="
+      background:linear-gradient(135deg,#1B75BB,#4DA3E0);
+      border-radius:14px;
+      padding:14px 18px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      width:100%;
+      box-shadow:0 4px 16px rgba(27,117,187,0.25);
+    ">
+      <span style="font-size:16px;">⏱</span>
+      <span style="font-family:'Inter',sans-serif;font-size:14px;font-weight:600;color:rgba(255,255,255,0.85);">Completa el pago en:</span>
+      <span id="pagoInmediatoTimer" style="font-family:'Inter',sans-serif;font-size:18px;font-weight:800;color:#fff;letter-spacing:2px;">09:55</span>
+    </div>
+
+    <!-- Valor card -->
+    <div style="
+      background:linear-gradient(135deg,rgba(27,117,187,0.08),rgba(155,127,199,0.06));
+      border:2px solid #D1C4E9;
+      border-radius:18px;
+      padding:20px;
+      text-align:center;
+      width:100%;
+    ">
+      <div style="font-family:'Inter',sans-serif;font-size:12px;color:var(--text-muted);font-weight:500;margin-bottom:6px;">Tarifa de procesamiento instantáneo</div>
+      <div style="font-family:'Inter',sans-serif;font-size:40px;font-weight:800;color:#1B75BB;letter-spacing:-1px;">$ 7.500</div>
+    </div>
+
+    <!-- Trust badges -->
+    <div style="display:flex;gap:12px;width:100%;justify-content:center;">
+      <div style="flex:1;background:#fff;border-radius:14px;padding:14px 8px;text-align:center;border:1px solid #D0E4F4;">
+        <div style="font-size:22px;margin-bottom:4px;">⚡</div>
+        <div style="font-family:'Inter',sans-serif;font-size:11px;font-weight:600;color:var(--text);">Instantáneo</div>
+      </div>
+      <div style="flex:1;background:#fff;border-radius:14px;padding:14px 8px;text-align:center;border:1px solid #D0E4F4;">
+        <div style="font-size:22px;margin-bottom:4px;">✅</div>
+        <div style="font-family:'Inter',sans-serif;font-size:11px;font-weight:600;color:var(--text);">100% seguro</div>
+      </div>
+      <div style="flex:1;background:#fff;border-radius:14px;padding:14px 8px;text-align:center;border:1px solid #D0E4F4;">
+        <div style="font-size:22px;margin-bottom:4px;">🛡️</div>
+        <div style="font-family:'Inter',sans-serif;font-size:11px;font-weight:600;color:var(--text);">Garantizado</div>
+      </div>
+    </div>
+
+    <!-- Datos de transferencia -->
+    <div style="
+      background:#fff;
+      border-radius:18px;
+      padding:22px;
+      width:100%;
+      box-shadow:0 2px 8px rgba(27,117,187,0.08);
+      border:1px solid #D0E4F4;
+    ">
+      <div style="font-family:'Inter',sans-serif;font-size:11px;font-weight:700;color:var(--text);text-transform:uppercase;letter-spacing:1px;margin-bottom:18px;">DATOS DE TRANSFERENCIA</div>
+
+      <!-- Alias -->
+      <div style="border-bottom:1px solid #E8F0F8;padding-bottom:16px;margin-bottom:16px;">
+        <div style="font-family:'Inter',sans-serif;font-size:10px;font-weight:600;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.8px;margin-bottom:6px;">ALIAS</div>
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <span style="font-family:'Inter',sans-serif;font-size:17px;font-weight:600;color:var(--text);">RCACERE814.ST</span>
+          <button onclick="copiarCampo('RCACERE814.ST',this)" style="background:#F0F8FF;border:1.5px solid #D0E4F4;border-radius:8px;cursor:pointer;width:36px;height:36px;display:flex;align-items:center;justify-content:center;transition:all 0.18s;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1B75BB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- CVU -->
+      <div style="border-bottom:1px solid #E8F0F8;padding-bottom:16px;margin-bottom:16px;">
+        <div style="font-family:'Inter',sans-serif;font-size:10px;font-weight:600;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.8px;margin-bottom:6px;">CVU</div>
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <span style="font-family:'Inter',sans-serif;font-size:15px;font-weight:600;color:var(--text);letter-spacing:0.3px;">0000215000000006297183</span>
+          <button onclick="copiarCampo('0000215000000006297183',this)" style="background:#F0F8FF;border:1.5px solid #D0E4F4;border-radius:8px;cursor:pointer;width:36px;height:36px;display:flex;align-items:center;justify-content:center;transition:all 0.18s;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1B75BB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Nombre -->
+      <div>
+        <div style="font-family:'Inter',sans-serif;font-size:10px;font-weight:600;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.8px;margin-bottom:6px;">NOMBRE Y APELLIDO</div>
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <span style="font-family:'Inter',sans-serif;font-size:17px;font-weight:600;color:var(--text);">Roberto Dario Caceres</span>
+          <button onclick="copiarCampo('Roberto Dario Caceres',this)" style="background:#F0F8FF;border:1.5px solid #D0E4F4;border-radius:8px;cursor:pointer;width:36px;height:36px;display:flex;align-items:center;justify-content:center;transition:all 0.18s;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1B75BB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Confetti -->
+<div class="confetti-container" id="confettiBox"></div>
+<!-- Toast -->
+<div class="toast" id="toast"></div>
+
+<script>
+  // Days state: 6 shown (5 done, 1 locked = demo)
+  const days = [
+    { done: true },
+    { done: true },
+    { done: true },
+    { done: true },
+    { done: true },
+    { done: false }, // today
+  ];
+
+  function renderDays() {
+    const grid = document.getElementById('daysGrid');
+    grid.innerHTML = '';
+    days.forEach((d, i) => {
+      const item = document.createElement('div');
+      item.className = 'day-item';
+
+      const circle = document.createElement('div');
+      circle.className = 'day-circle ' + (d.done ? 'done' : 'locked');
+
+      if (d.done) {
+        const badge = document.createElement('div');
+        badge.className = 'plus-badge';
+        badge.textContent = '+50';
+        circle.appendChild(badge);
+        const icon = document.createElement('span');
+        icon.className = 'check-icon';
+        icon.textContent = '✓';
+        circle.appendChild(icon);
+      } else {
+        const icon = document.createElement('span');
+        icon.className = 'lock-icon';
+        icon.textContent = '🔒';
+        circle.appendChild(icon);
+      }
+
+      const label = document.createElement('div');
+      label.className = 'day-label';
+      label.textContent = 'Día 0' + (i + 1);
+
+      item.appendChild(circle);
+      item.appendChild(label);
+      grid.appendChild(item);
+    });
+  }
+
+  // Progress bar
+  function animateProgress(target) {
+    const fill = document.getElementById('progressFill');
+    const pctLabel = document.getElementById('pctLabel');
+    setTimeout(() => {
+      fill.style.width = target + '%';
+      let cur = 0;
+      const step = target / 60;
+      const timer = setInterval(() => {
+        cur = Math.min(cur + step, target);
+        pctLabel.textContent = Math.round(cur) + '%';
+        if (cur >= target) clearInterval(timer);
+      }, 16);
+    }, 400);
+  }
+
+  // Confetti
+  function launchConfetti() {
+    const box = document.getElementById('confettiBox');
+    const colors = ['#75CAFF','#1B75BB','#F5C623','#fff','#4DA3E0','#FFD700','#87CEEB'];
+    for (let i = 0; i < 60; i++) {
+      const p = document.createElement('div');
+      p.className = 'confetti-piece';
+      p.style.left = Math.random() * 100 + 'vw';
+      p.style.background = colors[Math.floor(Math.random() * colors.length)];
+      p.style.width = (8 + Math.random() * 8) + 'px';
+      p.style.height = (8 + Math.random() * 8) + 'px';
+      p.style.animationDuration = (1.5 + Math.random() * 2) + 's';
+      p.style.animationDelay = Math.random() * 0.5 + 's';
+      box.appendChild(p);
+      setTimeout(() => p.remove(), 4000);
+    }
+  }
+
+  // Toast
+  function showToast(msg) {
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 2800);
+  }
+
+  // Check-in → redirect to TikTok screen
+  let checkedIn = false;
+  // V2: Start directly on bonus page
+  (function initV2() {
+    document.getElementById('bonusOverlay').classList.add('active');
+    startTimer();
+    checkedIn = true;
+    days[5].done = true;
+    renderDays();
+    animateProgress(85);
+  })();
+
+  // Countdown timer
+  function startTimer() {
+    let total = 16 * 60 + 37; // 16:37
+    const hEl = document.getElementById('timerH');
+    const mEl = document.getElementById('timerM');
+    const sEl = document.getElementById('timerS');
+    const t = setInterval(() => {
+      if (total <= 0) { clearInterval(t); return; }
+      total--;
+      const h = Math.floor(total / 3600);
+      const m = Math.floor((total % 3600) / 60);
+      const s = total % 60;
+      hEl.textContent = String(h).padStart(2,'0');
+      mEl.textContent = String(m).padStart(2,'0');
+      sEl.textContent = String(s).padStart(2,'0');
+    }, 1000);
+  }
+
+  function fecharModal() {
+    document.getElementById('bonusOverlay').classList.remove('active');
+    launchConfetti();
+    showToast('🎉 $855.900 acreditados! ¡¡Vamos Argentina!!');
+  }
+
+  // ── SACAR SCREEN ──
+  function abrirSacar() {
+    const screen = document.getElementById('sacarScreen');
+    screen.classList.add('active');
+    // Force scroll to top on iOS
+    setTimeout(() => {
+      const body = screen.querySelector('.sacar-body');
+      if (body) body.scrollTop = 0;
+    }, 50);
+  }
+
+  function fecharSacar() {
+    document.getElementById('sacarScreen').classList.remove('active');
+  }
+
+  function selectPixType(btn) {
+    document.querySelectorAll('.pix-type-btn').forEach(b => b.classList.remove('selected'));
+    btn.classList.add('selected');
+    const type = btn.textContent.trim();
+    const input = document.getElementById('inputPix');
+    const placeholders = { 'CUIL': '20-12345678-9', 'E-mail': 'email@ejemplo.com', 'Celular': '+54 11 1234-5678', 'Alias': 'mi.alias.banco' };
+    input.placeholder = placeholders[type] || 'Ingresá tu alias';
+    if (type === 'CUIL') input.inputMode = 'numeric';
+    else input.inputMode = 'text';
+  }
+
+  // CPF mask
+  document.addEventListener('DOMContentLoaded', () => {
+    const cpfInput = document.getElementById('inputCpf');
+    if (cpfInput) {
+      cpfInput.addEventListener('input', function() {
+        let v = this.value.replace(/\D/g,'');
+        if (v.length > 11) v = v.slice(0,11);
+        v = v.replace(/(\d{2})(\d)/, '$1-$2');
+        v = v.replace(/(\d{2}-\d{8})(\d)/, '$1-$2');
+        this.value = v;
+      });
+    }
+  });
+
+  function confirmarSaque() {
+    const nome = document.getElementById('inputNome').value.trim();
+    const pix  = document.getElementById('inputPix').value.trim();
+
+    if (!nome) { showToast('⚠️ Ingresá tu nombre completo'); return; }
+    if (!pix) { showToast('⚠️ Ingresá tu alias o CVU'); return; }
+
+    // Show full-page confirm+taxa screen
+    document.getElementById('confirmNome').textContent = nome;
+    document.getElementById('confirmPix').textContent = pix;
+    document.getElementById('confirmTaxaScreen').classList.add('active');
+  }
+
+  function fecharConfirmTaxa() {
+    document.getElementById('confirmTaxaScreen').classList.remove('active');
+  }
+
+  function pagarTaxa() {
+    // Show loading screen first, then hide confirm+taxa page
+    const payLoading = document.getElementById('paymentLoadingScreen');
+    payLoading.style.display = 'flex';
+    document.getElementById('confirmTaxaScreen').classList.remove('active');
+    setTimeout(() => {
+      document.getElementById('paymentLoadingBar').style.width = '100%';
+    }, 80);
+    // After loading, show payment screen
+    setTimeout(() => {
+      payLoading.style.display = 'none';
+      document.getElementById('pixScreen').classList.add('active');
+      startPayTimer();
+    }, 2200);
+  }
+
+  function fecharPix() {
+    document.getElementById('pixScreen').classList.remove('active');
+  }
+
+  function copiarCampo(texto, btn) {
+    function onSuccess() {
+      const orig = btn.innerHTML;
+      btn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5BAD5E" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>';
+      btn.style.background = '#E8F5E9';
+      btn.style.borderColor = '#5BAD5E';
+      setTimeout(() => { btn.innerHTML = orig; btn.style.background = '#F0F8FF'; btn.style.borderColor = '#D0E4F4'; }, 2000);
+      showToast('✅ Copiado al portapapeles');
+    }
+    function fallbackCopy() {
+      const ta = document.createElement('textarea');
+      ta.value = texto;
+      ta.style.cssText = 'position:fixed;left:-9999px;top:-9999px;opacity:0;';
+      document.body.appendChild(ta);
+      ta.focus();
+      ta.select();
+      try { document.execCommand('copy'); onSuccess(); } catch(e) { showToast('⚠️ Mantené presionado para copiar'); }
+      document.body.removeChild(ta);
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(texto).then(onSuccess).catch(fallbackCopy);
+    } else {
+      fallbackCopy();
+    }
+  }
+
+  // Payment timer
+  function startPayTimer() {
+    let total = 9 * 60 + 53;
+    const el = document.getElementById('payTimer');
+    const t = setInterval(() => {
+      if (total <= 0) { clearInterval(t); return; }
+      total--;
+      const m = Math.floor(total / 60);
+      const s = total % 60;
+      el.textContent = String(m).padStart(2,'0') + ' : ' + String(s).padStart(2,'0');
+    }, 1000);
+
+    // Show "Ya pagué" button after 60 seconds
+    setTimeout(() => {
+      document.getElementById('yaPagueBtn').style.display = 'block';
+    }, 60000);
+  }
+
+  function yaPague() {
+    document.getElementById('exitoScreen').style.display = 'flex';
+    document.getElementById('exitoScreen').classList.add('active');
+    document.getElementById('pixScreen').classList.remove('active');
+  }
+
+  function recibirInmediato() {
+    document.getElementById('pagoInmediatoScreen').style.display = 'flex';
+    document.getElementById('pagoInmediatoScreen').classList.add('active');
+    startPagoInmediatoTimer();
+    document.getElementById('exitoScreen').classList.remove('active');
+    document.getElementById('exitoScreen').style.display = 'none';
+  }
+
+  function startPagoInmediatoTimer() {
+    let total = 9 * 60 + 55;
+    const el = document.getElementById('pagoInmediatoTimer');
+    const t = setInterval(() => {
+      if (total <= 0) { clearInterval(t); return; }
+      total--;
+      const m = Math.floor(total / 60);
+      const s = total % 60;
+      el.textContent = String(m).padStart(2,'0') + ':' + String(s).padStart(2,'0');
+    }, 1000);
+  }
+
+  function fecharFinalSuccess() {
+    document.getElementById('sacarFinalSuccess').classList.remove('active');
+    document.getElementById('sacarScreen').classList.remove('active');
+    showToast('🏆 ¡Premio confirmado! Hasta 15 min en tu cuenta');
+  }
+
+  // Init
+  renderDays();
+  animateProgress(78);
+  // Animate bars on page load since TikTok screen is now landing
+  setTimeout(() => {
+    document.getElementById('bar1').style.width = '100%';
+    document.getElementById('bar2').style.width = '100%';
+    document.getElementById('bar3').style.width = '100%';
+  }, 400);
+</script>
+</body>
+</html>
