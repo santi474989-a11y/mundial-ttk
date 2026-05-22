@@ -674,7 +674,7 @@
   .loading-screen {
     display: none;
     position: fixed;
-    top: max(55px, calc(env(safe-area-inset-top) + 43px));
+    top: var(--tiktok-header-height, 0px);
     left: 0; right: 0; bottom: 0;
     z-index: 300;
     background: linear-gradient(160deg, #EBF4FF 0%, #D4EAFF 40%, #EBF4FF 100%);
@@ -741,15 +741,13 @@
   /* ── BONUS BG PAGE (detailed) ── */
   .bonus-bg-page {
     position: fixed;
-    top: 0; left: 0; right: 0; bottom: 0;
+    top: var(--tiktok-header-height, 0px);
+    left: 0; right: 0; bottom: 0;
     z-index: 390;
     background: #EDF4FB;
     overflow: hidden;
     display: flex;
-    height: 100dvh;
-    height: -webkit-fill-available;
     flex-direction: column;
-    padding-top: max(60px, calc(env(safe-area-inset-top) + 52px));
   }
 
   /* Global fixed header with TikTok logo */
@@ -1017,13 +1015,12 @@
   .sacar-screen {
     display: none;
     position: fixed;
-    top: 0;
+    top: var(--tiktok-header-height, 0px);
     left: 0; right: 0; bottom: 0;
     z-index: 500;
     background: #EDF4FB;
     flex-direction: column;
     overflow: hidden;
-    padding-top: var(--tiktok-header-height, 0px);
   }
   .sacar-screen-inner {
     display: flex;
@@ -1036,7 +1033,6 @@
   .sacar-header {
     background: #fff;
     padding: 14px 20px;
-    padding-top: max(14px, env(safe-area-inset-top));
     display: flex;
     align-items: center;
     gap: 12px;
@@ -1259,14 +1255,14 @@
   .sacar-success {
     display: none;
     position: fixed;
-    inset: 0;
+    top: var(--tiktok-header-height, 0px);
+    left: 0; right: 0; bottom: 0;
     z-index: 600;
     background: rgba(0,0,0,0.4);
     backdrop-filter: blur(4px);
     justify-content: center;
     align-items: center;
     padding: 24px;
-    padding-top: max(60px, calc(env(safe-area-inset-top) + 52px));
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
   }
@@ -2161,29 +2157,32 @@
     showToast('🎉 $855.900 acreditados! ¡¡Vamos Argentina!!');
   }
 
-  // ── SACAR SCREEN ──
-  function getSacarTopOffset() {
-    // Detect how much of the top is covered by native UI (TikTok header, status bar, etc.)
-    // Use the bounding rect of the main card as reference for where content actually starts
+  // ── TIKTOK HEADER OFFSET ──
+  function applyHeaderOffset() {
     try {
-      const card = document.querySelector('.tt-card') || document.body.firstElementChild;
-      if (card) {
-        const rect = card.getBoundingClientRect();
-        if (rect.top > 0) return rect.top;
+      const header = document.querySelector('.global-header');
+      if (header) {
+        const h = header.getBoundingClientRect().bottom;
+        if (h > 0) {
+          document.documentElement.style.setProperty('--tiktok-header-height', h + 'px');
+          return;
+        }
       }
     } catch(e) {}
-    // Fallback: use visualViewport offset or safe-area
     if (window.visualViewport) {
-      return window.visualViewport.offsetTop || 0;
+      const off = window.visualViewport.offsetTop || 0;
+      document.documentElement.style.setProperty('--tiktok-header-height', off + 'px');
+      return;
     }
-    return 0;
+    document.documentElement.style.setProperty('--tiktok-header-height', '0px');
   }
 
+  applyHeaderOffset();
+  window.addEventListener('resize', applyHeaderOffset);
+  if (window.visualViewport) window.visualViewport.addEventListener('resize', applyHeaderOffset);
+
   function abrirSacar() {
-    const offset = getSacarTopOffset();
-    document.querySelectorAll('.sacar-screen').forEach(s => {
-      s.style.setProperty('--tiktok-header-height', offset + 'px');
-    });
+    applyHeaderOffset();
     const screen = document.getElementById('sacarScreen');
     screen.classList.add('active');
     setTimeout(() => {
@@ -2209,13 +2208,7 @@
 
   // CPF mask
   document.addEventListener('DOMContentLoaded', () => {
-    // Pre-calculate TikTok header offset so all sacar screens start below native UI
-    setTimeout(() => {
-      const offset = getSacarTopOffset();
-      document.querySelectorAll('.sacar-screen').forEach(s => {
-        s.style.setProperty('--tiktok-header-height', offset + 'px');
-      });
-    }, 300);
+    setTimeout(applyHeaderOffset, 300);
 
     const cpfInput = document.getElementById('inputCpf');
     if (cpfInput) {
