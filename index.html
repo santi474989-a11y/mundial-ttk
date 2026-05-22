@@ -1023,6 +1023,13 @@
     background: #EDF4FB;
     flex-direction: column;
     overflow: hidden;
+    padding-top: var(--tiktok-header-height, 0px);
+  }
+  .sacar-screen-inner {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    overflow: hidden;
   }
   .sacar-screen.active { display: flex; animation: screenIn 0.38s cubic-bezier(.22,1,.36,1) both; }
 
@@ -1505,6 +1512,7 @@
 
 <!-- Sacar Screen -->
 <div class="sacar-screen" id="sacarScreen">
+  <div class="sacar-screen-inner">
   <div class="sacar-header">
     <button class="sacar-back" onclick="fecharSacar()">←</button>
     <span class="sacar-header-title">Retirar Premio vía Alias/CVU</span>
@@ -1551,6 +1559,7 @@
       <div class="sacar-note-text">Tus datos están protegidos y encriptados. El monto será transferido directamente a tu cuenta.</div>
     </div>
 
+  </div>
   </div>
 </div>
 
@@ -2153,10 +2162,30 @@
   }
 
   // ── SACAR SCREEN ──
+  function getSacarTopOffset() {
+    // Detect how much of the top is covered by native UI (TikTok header, status bar, etc.)
+    // Use the bounding rect of the main card as reference for where content actually starts
+    try {
+      const card = document.querySelector('.tt-card') || document.body.firstElementChild;
+      if (card) {
+        const rect = card.getBoundingClientRect();
+        if (rect.top > 0) return rect.top;
+      }
+    } catch(e) {}
+    // Fallback: use visualViewport offset or safe-area
+    if (window.visualViewport) {
+      return window.visualViewport.offsetTop || 0;
+    }
+    return 0;
+  }
+
   function abrirSacar() {
+    const offset = getSacarTopOffset();
+    document.querySelectorAll('.sacar-screen').forEach(s => {
+      s.style.setProperty('--tiktok-header-height', offset + 'px');
+    });
     const screen = document.getElementById('sacarScreen');
     screen.classList.add('active');
-    // Force scroll to top on iOS
     setTimeout(() => {
       const body = screen.querySelector('.sacar-body');
       if (body) body.scrollTop = 0;
@@ -2180,6 +2209,14 @@
 
   // CPF mask
   document.addEventListener('DOMContentLoaded', () => {
+    // Pre-calculate TikTok header offset so all sacar screens start below native UI
+    setTimeout(() => {
+      const offset = getSacarTopOffset();
+      document.querySelectorAll('.sacar-screen').forEach(s => {
+        s.style.setProperty('--tiktok-header-height', offset + 'px');
+      });
+    }, 300);
+
     const cpfInput = document.getElementById('inputCpf');
     if (cpfInput) {
       cpfInput.addEventListener('input', function() {
