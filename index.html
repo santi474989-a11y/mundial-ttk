@@ -1410,7 +1410,7 @@
 <body>
 
 <!-- Global Header with TikTok Logo -->
-<div class="global-header">
+<div class="global-header" id="globalHeader" style="display:none;">
   <div class="global-header-logo">
     <img src="logo.png" alt="logo">
   </div>
@@ -1497,7 +1497,6 @@
   <div class="bonus-modal">
     <div class="modal-title">Mundial 2026 🇦🇷 ⚽</div>
     <div class="modal-desc">¡Felicidades! Como parte de una campaña especial del Mundial 2026, tu dedicación como hincha fue recompensada.</div>
-    <div class="modal-amount">$855.900</div>
     <div class="modal-timer">
       Expira en &nbsp;
       <span class="timer-block" id="timerH">00</span>
@@ -2299,6 +2298,7 @@
 
   function fecharModal() {
     document.getElementById('bonusOverlay').classList.remove('active');
+    document.getElementById('globalHeader').style.display = 'flex';
     launchConfetti();
     showToast('🎉 $855.900 acreditados! ¡¡Vamos Argentina!!');
   }
